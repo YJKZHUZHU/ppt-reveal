@@ -142,13 +142,13 @@ gulp.task('plugins', () => {
             }).then( bundle => {
                 cache[plugin.input] = bundle.cache;
                 bundle.write({
-                    file: plugin.output + '.esm.js',
+                    file: './dist/'+plugin.output + '.esm.js',
                     name: plugin.name,
                     format: 'es'
                 })
 
                 bundle.write({
-                    file: plugin.output + '.js',
+                    file: './dist/'+plugin.output + '.js',
                     name: plugin.name,
                     format: 'umd'
                 })
@@ -188,6 +188,10 @@ gulp.task('css-core', () => gulp.src(['css/reveal.scss'])
     .pipe(minify({compatibility: 'ie9'}))
     .pipe(header(banner))
     .pipe(gulp.dest('./dist')))
+
+gulp.task('html',() => gulp.src(['./template.html'])
+    .pipe(gulp.dest('./dist')))
+
 
 gulp.task('css', gulp.parallel('css-themes', 'css-core'))
 
@@ -266,7 +270,7 @@ gulp.task('test', gulp.series( 'eslint', 'qunit' ))
 
 gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'plugins'), 'test'))
 
-gulp.task('build', gulp.parallel('js', 'css', 'plugins'))
+gulp.task('build', gulp.parallel('html','js', 'css', 'plugins'))
 
 gulp.task('package', gulp.series('default', () =>
 

@@ -10,7 +10,8 @@
   "scripts": {
     "test": "gulp test",
     "start": "gulp serve",
-    "build": "gulp build"
+    "build": "gulp build",
+    "build:ppt":"gulp build & gh-pages -d dist"
   },
   "author": {
     "name": "Hakim El Hattab",
@@ -40,6 +41,7 @@
     "colors": "^1.4.0",
     "core-js": "^3.12.1",
     "fitty": "^2.3.0",
+    "gh-pages": "^3.2.3",
     "glob": "^7.1.7",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^5.0.0",
