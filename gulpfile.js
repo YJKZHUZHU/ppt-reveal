@@ -5,7 +5,7 @@ const yargs = require('yargs')
 const colors = require('colors')
 const through = require('through2');
 const qunit = require('node-qunit-puppeteer')
-
+const rename = require('gulp-rename')
 const {rollup} = require('rollup')
 const {terser} = require('rollup-plugin-terser')
 const babel = require('@rollup/plugin-babel').default
@@ -190,6 +190,7 @@ gulp.task('css-core', () => gulp.src(['css/reveal.scss'])
     .pipe(gulp.dest('./dist')))
 
 gulp.task('html',() => gulp.src(['./template.html'])
+    .pipe(rename('index.html')) //重命名为
     .pipe(gulp.dest('./dist')))
 
 
