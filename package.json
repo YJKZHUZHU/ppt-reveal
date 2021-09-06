@@ -11,7 +11,7 @@
     "test": "gulp test",
     "start": "gulp serve",
     "build": "gulp build",
-    "build:ppt": "gh-pages -d dist"
+    "build:ppt": "gulp build && gh-pages -d dist"
   },
   "author": {
     "name": "Hakim El Hattab",
