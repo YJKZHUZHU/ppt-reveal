@@ -6,6 +6,7 @@ const colors = require('colors')
 const through = require('through2');
 const qunit = require('node-qunit-puppeteer')
 const rename = require('gulp-rename')
+const clean = require('gulp-clean'); //清理文件或文件夹
 const { rollup } = require('rollup')
 const { terser } = require('rollup-plugin-terser')
 const babel = require('@rollup/plugin-babel').default
@@ -196,7 +197,7 @@ gulp.task('html', () => gulp.src(['./template.html'])
     .pipe(gulp.dest('./dist')))
 
 gulp.task('static', () => gulp.src('static/**/*')
-    .pipe(gulp.dest('./dist')))
+    .pipe(gulp.dest('./dist/static')))
 
 
 gulp.task('css', gulp.parallel('css-themes', 'css-core'))
@@ -276,10 +277,11 @@ gulp.task('test', gulp.series('eslint', 'qunit'))
 
 gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'plugins'), 'test'))
 
-gulp.task('build', gulp.parallel('html', 'js', 'css', 'plugins','static'))
+gulp.task('build', gulp.parallel('html', 'js', 'css', 'plugins', 'static'))
+
+gulp.task('clean', () => gulp.src('dist/', { read: false }).pipe(clean()))
 
 gulp.task('package', gulp.series('default', () =>
-
     gulp.src([
         './index.html',
         './dist/**',

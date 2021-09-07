@@ -10,8 +10,9 @@
   "scripts": {
     "test": "gulp test",
     "start": "gulp serve",
-    "build": "gulp build",
-    "build:ppt": "gulp build && gh-pages -d dist"
+    "clean": "gulp clean",
+    "build": "npm run clean && gulp build",
+    "build:ppt": "npm run build && gh-pages -d dist"
   },
   "author": {
     "name": "Hakim El Hattab",
@@ -45,10 +46,12 @@
     "glob": "^7.1.7",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean": "^0.4.0",
     "gulp-clean-css": "^4.2.0",
     "gulp-connect": "^5.7.0",
     "gulp-eslint": "^6.0.0",
     "gulp-header": "^2.0.9",
+    "gulp-notify": "^4.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-tap": "^2.0.0",
     "gulp-zip": "^4.2.0",
