@@ -199,6 +199,10 @@ gulp.task('html', () => gulp.src(['./template.html'])
 gulp.task('static', () => gulp.src('static/**/*')
     .pipe(gulp.dest('./dist/static')))
 
+// 代码高亮样式转移
+gulp.task('highLight', () => gulp.src(['plugin/highlight/monokai.css','plugin/highlight/zenburn.css'])
+    .pipe(gulp.dest('./dist/plugin/highlight')))
+
 
 gulp.task('css', gulp.parallel('css-themes', 'css-core'))
 
@@ -277,7 +281,7 @@ gulp.task('test', gulp.series('eslint', 'qunit'))
 
 gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'plugins'), 'test'))
 
-gulp.task('build', gulp.parallel('html', 'js', 'css', 'plugins', 'static'))
+gulp.task('build', gulp.parallel('html', 'js', 'css', 'plugins', 'static','highLight'))
 
 gulp.task('clean', () => gulp.src('dist/', { read: false }).pipe(clean()))
 
